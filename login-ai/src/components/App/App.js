@@ -27,16 +27,18 @@ function App() {
                         onRegisterComplete={() => setInRegistration(false)}/>
                 )
             )}
-            {userId && (
-                <ModelSelector
-                    authToken={authToken} 
-                    onSelect={(model) => setSelectedModel(model)}/>
-            )}
-            {selectedModel && (
-                <CompletionArea
-                    authToken={authToken}
-                    selectedModel={selectedModel} />
-            )}
+            <div className="container">
+                {userId && (
+                    <ModelSelector
+                        authToken={authToken} 
+                        onSelect={(model) => setSelectedModel(model)}/>
+                )}
+                {selectedModel && (
+                    <CompletionArea
+                        authToken={authToken}
+                        selectedModel={selectedModel} />
+                )}
+            </div>
         </div>
     );
 }

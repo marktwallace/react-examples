@@ -3,21 +3,22 @@ import React from "react";
 function ButtonInput({ onClick }) {
     const [input, setInput] = React.useState("");
 
-    function handleButtonClick() {
+    function handleSubmit(event) {
+        event.preventDefault();
         onClick(input);
         setInput(""); // Clear the input after sending
     }
 
     return (
-        <div className="button-input">
-            <input
-                type="text"
-                value={input}
-                onChange={(event) => setInput(event.target.value)}
+        <form className="button-input" onSubmit={handleSubmit}>
+            <textarea
+                className="input-field"
                 placeholder="Type something..."
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
             />
-            <button onClick={handleButtonClick}>Submit</button>
-        </div>
+            <button type="submit" className="button-submit">Submit</button>
+        </form>
     );
 }
 

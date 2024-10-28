@@ -48,10 +48,11 @@ function ModelSelector({ authToken, onSelect }) {
     }, [authToken]); // Dependency on authToken, to refetch if it changes
 
     return (
-        <div>
+        <div className="model-selector">
             <label htmlFor="model-select">Select a Model:</label>
             <select
                 id="model-select"
+                className="select-model"
                 value={selectedModel}
                 onChange={(e) => {
                     setSelectedModel(e.target.value)

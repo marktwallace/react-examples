@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CompletionScrollArea from "../CompletionScrollArea/CompletionScrollArea";
 import ButtonInput from "../ButtonInput/ButtonInput";
+import ModelSelector from "../ModelSelector/ModelSelector";
 
 const CHAT_COMPLETION_ENDPOINT = "http://localhost:8000/openai/v1/chat/completions";
 
@@ -10,7 +11,7 @@ function CompletionArea({ authToken, selectedModel }) {
     async function handleCompletion(input) {
         const newMessage = { role: "user", content: input };
         const updatedMessages = [...messages, newMessage];
-        
+    
         try {
             const response = await fetch(CHAT_COMPLETION_ENDPOINT, {
                 method: "POST",
@@ -28,20 +29,24 @@ function CompletionArea({ authToken, selectedModel }) {
                     messages: updatedMessages
                 })
             });
-
-            if (response.ok) {
-                const data = await response.json();
-                const completion = data.choices[0].message.content;
-
-                setMessages([...updatedMessages, { role: "assistant", content: completion }]);
-            } else {
-                console.error("Failed to fetch chat completion:", response.statusText);
+    
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error("Failed to fetch chat completion:", errorData);
+                alert(`Error: ${errorData.message}`);
+                return;
             }
+    
+            const data = await response.json();
+            const completion = data.choices[0].message.content;
+    
+            setMessages([...updatedMessages, { role: "assistant", content: completion }]);
         } catch (error) {
             console.error("Error fetching chat completion:", error);
+            alert("An error occurred while fetching the completion. Please try again.");
         }
     }
-
+    
     return (
         <div>
             <CompletionScrollArea messages={messages} />

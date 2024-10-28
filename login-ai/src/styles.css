@@ -36,6 +36,7 @@ button {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  width: 100%;
 }
 
 header {
@@ -64,7 +65,7 @@ h1 {
   right: 0;
   bottom: 0;
   width: 100%;
-  max-width: 600px;
+  max-width: 2000px;
   margin: 0 auto;
   padding: 32px;
   text-align: center;
@@ -158,12 +159,17 @@ h1 {
     margin: 8px 0;
 }
 
-/* General container styling for better padding and alignment */
+/* Content container */
 .container {
-    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%; /* Full width */
+    max-width: 1200px; /* Optional: limit max width for readability */
     margin: 0 auto;
     padding: 20px;
     font-family: Arial, sans-serif;
+    overflow: hidden; /* Ensure content stays within viewport */
 }
 
 /* Dropdown styling for better legibility */
@@ -174,16 +180,46 @@ h1 {
     font-size: 1rem;
 }
 
+/* Scroll area expands to fill available space */
+.completion-scroll-area {
+    flex: 1;
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 1rem;
+    line-height: 1.5;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+}
+
+/* Left-align label and dropdown in ModelSelector */
+.model-selector {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.model-selector label {
+    margin-right: 10px;
+}
+
+/* Dropdown styling for better legibility */
+.select-model {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+}
 /* Styles for the completion scroll area */
 .completion-scroll-area {
     border: 1px solid #ccc;
     padding: 10px;
-    height: calc(100vh - 200px); /* Adjust height to fit window */
+    height: calc(100vh - 300px); /* Adjust height to fit window */
     overflow-y: auto;
-    margin-bottom: 10px;
     font-size: 1rem;
     line-height: 1.5;
     background-color: #f9f9f9;
+    margin-bottom: 10px;
 }
 
 /* User message styling with rounded corners */
@@ -201,11 +237,24 @@ h1 {
     margin: 8px 0;
 }
 
-/* Button styling for consistency */
-.button-submit {
-    display: block;
-    width: 100%;
+/* Button and input field styles */
+.button-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.input-field {
+    flex-grow: 1;
     padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.button-submit {
+    padding: 10px 20px;
     font-size: 1rem;
     font-weight: bold;
     background-color: #007bff;
@@ -213,16 +262,6 @@ h1 {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
-
-/* Input field styling */
-.input-field {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
 }
 
 /* Margin utility classes */
