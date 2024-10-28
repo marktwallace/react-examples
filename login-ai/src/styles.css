@@ -14,6 +14,10 @@ html {
   --color-gray-900: hsl(0deg 0% 90%);
 }
 
+.label {
+  text-align: left;    
+}
+
 body {
   font-family: sans-serif;
 }
@@ -92,3 +96,36 @@ h1 {
 .modal-title {
   margin-bottom: 0.5em;
 }
+
+/* login-dialog styles */
+.login-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    text-align: center;
+  }
+  
+  .login-dialog input {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .login-dialog button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
