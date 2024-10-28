@@ -2,16 +2,18 @@ import React from 'react';
 import Header from "../Header";
 import LoginDialog from '../LoginDialog';
 import NewAccountDialog from '../NewAccountDialog/NewAccountDialog';
-import CompletionDialog from '../CompletionDialog/CompletionDialog';
+import ModelSelector from '../ModelSelector/ModelSelector';
+import CompletionArea from '../CompletionArea/CompletionArea';
 
 function App() {
     const [userId, setUserID] = React.useState("");
     const [authToken, setAuthToken] = React.useState("");
     const [inRegistration, setInRegistration] = React.useState(false);
+    const [selectedModel, setSelectedModel] = React.useState("");
 
     return (
         <div className="wrapper">
-            <Header />
+            <Header>Login AI</Header>
             {!userId && (
                 !inRegistration ? (
                     <LoginDialog 
@@ -26,9 +28,14 @@ function App() {
                 )
             )}
             {userId && (
-                <CompletionDialog
-                    userId={userId}
-                    authToken={authToken} />
+                <ModelSelector
+                    authToken={authToken} 
+                    onSelect={(model) => setSelectedModel(model)}/>
+            )}
+            {selectedModel && (
+                <CompletionArea
+                    authToken={authToken}
+                    selectedModel={selectedModel} />
             )}
         </div>
     );
