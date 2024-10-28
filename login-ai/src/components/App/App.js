@@ -5,6 +5,7 @@ import NewAccountDialog from '../NewAccountDialog/NewAccountDialog';
 
 function App() {
     const [userId, setUserID] = React.useState("");
+    const [authToken, setAuthToken] = React.useState("");
     const [inRegistration, setInRegistration] = React.useState(false);
 
     return (
@@ -13,7 +14,10 @@ function App() {
             {!userId && (
                 !inRegistration ? (
                     <LoginDialog 
-                        onLogin={(id) => setUserID(id)} 
+                        onLogin={(id,jwt) => { 
+                            setUserID(id);
+                            setAuthToken(jwt);
+                        }}
                         onRegister={() => setInRegistration(true)}/>
                 ) : (
                     <NewAccountDialog 

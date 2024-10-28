@@ -27,8 +27,9 @@ function LoginDialog({ onLogin, onRegister }) {
 
             if (response.ok) {
                 const data = await response.json();
-                onLogin(username); // Set the userId in the parent component
-                // TODO: pass token data or handle it here
+                const authToken = data.access_token;
+                console.log({ authToken });
+                onLogin(username,authToken);
             } else {
                 const errorData = await response.json();
                 alert(`Login failed: ${errorData.detail}`);
