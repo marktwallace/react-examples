@@ -145,3 +145,90 @@ h1 {
     border-radius: 4px;
     cursor: pointer;
   }
+
+.user-message {
+    border: 1px solid #007bff;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 8px 0;
+    background-color: #f0f8ff;
+}
+
+.assistant-message {
+    margin: 8px 0;
+}
+
+/* General container styling for better padding and alignment */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Dropdown styling for better legibility */
+.select-model {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+/* Styles for the completion scroll area */
+.completion-scroll-area {
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: calc(100vh - 200px); /* Adjust height to fit window */
+    overflow-y: auto;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    line-height: 1.5;
+    background-color: #f9f9f9;
+}
+
+/* User message styling with rounded corners */
+.user-message {
+    border: 1px solid #007bff;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 8px 0;
+    background-color: #e6f2ff;
+    font-weight: bold;
+}
+
+/* Assistant message styling */
+.assistant-message {
+    margin: 8px 0;
+}
+
+/* Button styling for consistency */
+.button-submit {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Input field styling */
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Margin utility classes */
+.mb-10 {
+    margin-bottom: 10px;
+}
+.mt-10 {
+    margin-top: 10px;
+}

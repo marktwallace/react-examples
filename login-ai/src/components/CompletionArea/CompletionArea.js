@@ -5,7 +5,6 @@ import ButtonInput from "../ButtonInput/ButtonInput";
 const CHAT_COMPLETION_ENDPOINT = "http://localhost:8000/openai/v1/chat/completions";
 
 function CompletionArea({ authToken, selectedModel }) {
-    const [completionText, setCompletionText] = useState('');
     const [messages, setMessages] = useState([]);
 
     async function handleCompletion(input) {
@@ -26,16 +25,15 @@ function CompletionArea({ authToken, selectedModel }) {
                     max_tokens: 150,
                     presence_penalty: 0.5,
                     frequency_penalty: 0.5,
-                    messages: updatedMessages // Include conversation history with new message
+                    messages: updatedMessages
                 })
             });
 
             if (response.ok) {
                 const data = await response.json();
-                const completion = data.choices[0].message.content; // Assuming OpenAI response format
+                const completion = data.choices[0].message.content;
 
-                setCompletionText((prevText) => prevText + "\n" + completion);
-                setMessages(updatedMessages.concat({ role: "assistant", content: completion }));
+                setMessages([...updatedMessages, { role: "assistant", content: completion }]);
             } else {
                 console.error("Failed to fetch chat completion:", response.statusText);
             }
@@ -46,7 +44,7 @@ function CompletionArea({ authToken, selectedModel }) {
 
     return (
         <div>
-            <CompletionScrollArea completionText={completionText} />
+            <CompletionScrollArea messages={messages} />
             <ButtonInput onClick={(input) => handleCompletion(input)} />
         </div>
     );
