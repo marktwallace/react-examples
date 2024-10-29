@@ -49,7 +49,6 @@ function ModelSelector({ authToken, onSelect }) {
 
     return (
         <div className="model-selector">
-            <label htmlFor="model-select">Select a Model:</label>
             <select
                 id="model-select"
                 className="select-model"

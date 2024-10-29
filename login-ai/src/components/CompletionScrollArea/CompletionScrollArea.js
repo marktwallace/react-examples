@@ -11,7 +11,7 @@ function CompletionScrollArea({ messages, isTyping }) {
     }, [messages, isTyping]); // Add isTyping to ensure scrolling updates
 
     return (
-        <div ref={scrollRef} className="completion-scroll-area" style={{ overflowY: "auto", maxHeight: "400px" }}>
+        <div ref={scrollRef} className="completion-scroll-area">
             {messages.map((msg, index) => (
                 <div
                     key={index}
