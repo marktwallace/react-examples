@@ -9,9 +9,10 @@ function CompletionArea({ authToken, selectedModel }) {
     const [messages, setMessages] = useState([]);
 
     async function handleCompletion(input) {
-        const newMessage = { role: "user", content: input };
-        const updatedMessages = [...messages, newMessage];
-    
+        const userMessage = { role: "user", content: input };
+        // Display the user message immediately
+        setMessages((prevMessages) => [...prevMessages, userMessage]);
+
         try {
             const response = await fetch(CHAT_COMPLETION_ENDPOINT, {
                 method: "POST",
@@ -26,27 +27,28 @@ function CompletionArea({ authToken, selectedModel }) {
                     max_tokens: 150,
                     presence_penalty: 0.5,
                     frequency_penalty: 0.5,
-                    messages: updatedMessages
+                    messages: [...messages, userMessage]
                 })
             });
-    
+
             if (!response.ok) {
                 const errorData = await response.json();
                 console.error("Failed to fetch chat completion:", errorData);
                 alert(`Error: ${errorData.message}`);
                 return;
             }
-    
+
             const data = await response.json();
-            const completion = data.choices[0].message.content;
-    
-            setMessages([...updatedMessages, { role: "assistant", content: completion }]);
+            const assistantMessage = { role: "assistant", content: data.choices[0].message.content };
+
+            // Add the assistant's response to messages
+            setMessages((prevMessages) => [...prevMessages, assistantMessage]);
         } catch (error) {
             console.error("Error fetching chat completion:", error);
             alert("An error occurred while fetching the completion. Please try again.");
         }
     }
-    
+
     return (
         <div>
             <CompletionScrollArea messages={messages} />

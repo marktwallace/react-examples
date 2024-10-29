@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 
 function CompletionScrollArea({ messages }) {
+    const scrollRef = useRef(null);
+
+    useEffect(() => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+        }
+    }, [messages]);
+
     return (
-        <div className="completion-scroll-area">
+        <div ref={scrollRef} className="completion-scroll-area">
             {messages.map((msg, index) => (
                 <div
                     key={index}
