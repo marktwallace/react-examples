@@ -31,6 +31,10 @@ button {
 .wrapper {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start; /* flex-end, space-between… */
+  align-items: stretch; /* flex-end, baseline… */  
+  min-height: 100svh; /* Ensure wrapper takes full viewport height */
+  /* svh (small vertical height) avoids problems on some mobile devices */
   min-height: 100%;
 }
 
@@ -91,4 +95,14 @@ h1 {
 }
 .modal-title {
   margin-bottom: 0.5em;
+}
+
+/* Use on a div to get centered text */
+/* example, change as needed */
+.max-width-wrapper {
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
 }

@@ -7,6 +7,7 @@ function LabeledInput({label,...delegated}) {
       <p htmlFor={id} className="label">{label}</p>
       <input
         id={id}
+        placeholder=" " /* avoids safari bug on baseline alignment */
         {...delegated}
       />
   </div>);
