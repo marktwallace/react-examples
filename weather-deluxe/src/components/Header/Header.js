@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Header({children,...delegated}) {
+function Header() {
   return (
     <header>
-      <h1 {...delegated}>{children}</h1>
+      <h1>React Starter Project</h1>
     </header>
   );
 }

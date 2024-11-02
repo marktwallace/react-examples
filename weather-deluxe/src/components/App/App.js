@@ -1,9 +1,9 @@
-import Header from '../Header';
+import WeatherMain from "../WeatherMain/WeatherMain";
 
 function App() {
   return (
     <div className="wrapper">
-      <Header>Empty Project</Header>
+      <WeatherMain />
     </div>
   );
 }
