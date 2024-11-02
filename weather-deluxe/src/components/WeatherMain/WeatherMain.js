@@ -12,30 +12,22 @@ function WeatherMain() {
     async function fetchPlace() {
       try {
         const response = await fetch(`https://api.zippopotam.us/us/${zip}`);
-  
-        // Check if the response is OK (status 200)
         if (!response.ok) {
           throw new Error("Zip code not found");
-        }
-  
+        }  
         const data = await response.json();
         console.log({ data });
-  
-        // Check if there are places in the data
         if (!data.places || data.places.length === 0) {
           throw new Error("Zip code not found");
-        }
-  
+        }  
         const newPlace = data.places[0];
         newPlace.zipcode = zip;
         setPlace(newPlace);
         setSelectedPlaceName(newPlace["place name"]);
       } catch (error) {
-        // Display an alert for any error (e.g., zip code not found)
         alert(error.message);
       }
-    }
-  
+    }  
     if (zip) {
       fetchPlace();
     }
@@ -45,20 +37,16 @@ function WeatherMain() {
     if (!place) {
       return;
     }
-
     async function fetchWeather() {
       try {
         const response = await fetch(
           `https://api.open-meteo.com/v1/forecast?latitude=${place.latitude}&longitude=${place.longitude}&current_weather=true`
         );
-
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-
         const data = await response.json();
         console.log({ data });
-
         const placeWeatherEntry = {
           placename: place["place name"],
           state: place.state,
@@ -71,7 +59,6 @@ function WeatherMain() {
           winddirection: data.current_weather.winddirection,
           windspeed: data.current_weather.windspeed,
         };
-
         setPlaceWeather((current) => {
           const clonedData = structuredClone(current);
           const updateKey = place["place name"];
@@ -79,12 +66,10 @@ function WeatherMain() {
           return clonedData;
         });
         setSelectedPlaceName(place["place name"]);
-
       } catch (error) {
         console.error("Fetch weather failed:", error);
       }
     }
-
     fetchWeather();
   }, [place]);
 
@@ -102,8 +87,7 @@ function WeatherMain() {
                   cursor: "pointer",
                   fontWeight: selectedPlaceName === name ? "bold" : "normal",
                   color: selectedPlaceName === name ? "#007bff" : "#000",
-                }}
-              >
+                }}>
                 {name}
               </li>
             ))}
@@ -117,5 +101,4 @@ function WeatherMain() {
     </main>
   );
 }
-
 export default WeatherMain;
